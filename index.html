@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cat Species Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      background: linear-gradient(to right, #fdfbfb, #ebedee);
       font-family: Arial, sans-serif;
-      color: #333;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
       margin: 0;
       padding: 0;
+      color: #333;
     }
     header {
-      background-color: #4a4a4a;
+      background: #4a4a4a;
       color: #fff;
       text-align: center;
       padding: 1.5rem;
@@ -21,30 +21,41 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
       padding: 2rem;
     }
     .cat-card {
-      background-color: #fff;
+      background: #fff;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       overflow: hidden;
       text-align: center;
-      transition: transform 0.3s;
-      cursor: pointer;
+      transition: 0.3s;
     }
     .cat-card:hover {
       transform: scale(1.05);
     }
     .cat-card img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
     }
     .cat-card h3 {
-      margin: 1rem 0;
-      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+    .cat-detail {
+      padding: 2rem;
+      border-top: 2px solid #ccc;
+    }
+    .cat-detail img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .cat-detail h2 {
+      margin-top: 0;
     }
     footer {
       text-align: center;
@@ -56,28 +67,206 @@
       text-decoration: none;
       color: inherit;
     }
+    .back {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #333;
+      color: #fff;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    🐾 Cat Species Gallery 🐾
-  </header>
+  <header>🐾 Cat Species Gallery 🐾</header>
+
   <div class="gallery">
-    <a href="siamese.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2019/03/30/14/07/siamese-cat-4092616_1280.jpg" alt="Siamese"><h3>Siamese</h3></div></a>
-    <a href="mainecoon.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2018/06/25/09/24/cat-3497030_1280.jpg" alt="Mainecoon"><h3>Mainecoon</h3></div></a>
-    <a href="persian.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2016/01/05/13/58/cat-1123340_1280.jpg" alt="Persian"><h3>Persian</h3></div></a>
-    <a href="bengal.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/05/02/09/41/bengal-cat-5120461_1280.jpg" alt="Bengal"><h3>Bengal</h3></div></a>
-    <a href="abyssinian.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2016/04/20/18/39/abyssinian-cat-1342996_1280.jpg" alt="Abyssinian"><h3>Abyssinian</h3></div></a>
-    <a href="sphynx.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/sphynx-2783871_1280.jpg" alt="Sphynx"><h3>Sphynx</h3></div></a>
-    <a href="ragdoll.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2022/05/09/12/27/ragdoll-7182711_1280.jpg" alt="Ragdoll"><h3>Ragdoll</h3></div></a>
-    <a href="scottish.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2019/09/14/22/56/scottish-fold-4475868_1280.jpg" alt="Scottish"><h3>Scottish</h3></div></a>
-    <a href="russianblue.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2021/07/22/10/20/russian-blue-6484184_1280.jpg" alt="Russianblue"><h3>Russianblue</h3></div></a>
-    <a href="british.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="British"><h3>British</h3></div></a>
-    <a href="american.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/01/26/17/29/cat-4793315_1280.jpg" alt="American"><h3>American</h3></div></a>
-    <a href="norwegian.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/12/06/18/49/norwegian-forest-cat-5808570_1280.jpg" alt="Norwegian"><h3>Norwegian</h3></div></a>
+    <a href="#siamese"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2019/03/30/14/07/siamese-cat-4092616_1280.jpg"><h3>Siamese</h3></div></a>
+    <a href="#mainecoon"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2018/06/25/09/24/cat-3497030_1280.jpg"><h3>Maine Coon</h3></div></a>
+    <a href="#persian"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2016/01/05/13/58/cat-1123340_1280.jpg"><h3>Persian</h3></div></a>
+    <a href="#bengal"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/05/02/09/41/bengal-cat-5120461_1280.jpg"><h3>Bengal</h3></div></a>
+    <a href="#abyssinian"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2016/04/20/18/39/abyssinian-cat-1342996_1280.jpg"><h3>Abyssinian</h3></div></a>
+    <a href="#sphynx"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/sphynx-2783871_1280.jpg"><h3>Sphynx</h3></div></a>
+    <a href="#ragdoll"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2022/05/09/12/27/ragdoll-7182711_1280.jpg"><h3>Ragdoll</h3></div></a>
+    <a href="#scottish"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2019/09/14/22/56/scottish-fold-4475868_1280.jpg"><h3>Scottish Fold</h3></div></a>
+    <a href="#russianblue"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2021/07/22/10/20/russian-blue-6484184_1280.jpg"><h3>Russian Blue</h3></div></a>
+    <a href="#british"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg"><h3>British Shorthair</h3></div></a>
+    <a href="#american"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/01/26/17/29/cat-4793315_1280.jpg"><h3>American Curl</h3></div></a>
+    <a href="#norwegian"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/12/06/18/49/norwegian-forest-cat-5808570_1280.jpg"><h3>Norwegian Forest</h3></div></a>
   </div>
+
+  <!-- Cat Information Sections -->
+  <div class="cat-detail" id="siamese">
+    <h2>Siamese</h2>
+    <img src="https://cdn.pixabay.com/photo/2019/03/30/14/07/siamese-cat-4092616_1280.jpg" alt="Siamese Cat">
+    <p><strong>Origin:</strong> Thailand</p>
+    <p><strong>Height:</strong> 23–28 cm</p>
+    <p><strong>Weight:</strong> 2.5–5.5 kg</p>
+    <p><strong>Life Span:</strong> 12–20 years</p>
+    <p><strong>Friendliness:</strong> Highly social and vocal</p>
+    <p><strong>Personality:</strong> Intelligent, affectionate, playful</p>
+    <p><strong>Grooming Needs:</strong> Low maintenance</p>
+    <p><strong>Fun Fact:</strong> Once sacred temple cats in Thailand.</p>
+    <a href="#" class="back">← Back to Top</a>
+  </div>
+
+  <!-- Repeat the same structure for the other 11 cats below -->
+  <!-- Example: <div class="cat-detail" id="mainecoon"> ... </div> -->
+
   <footer>
-    © 2025 Cat Species Gallery | Hosted on GitHub Pages
+    © 2025 Cat Species Gallery | Created with ❤️
   </footer>
 </body>
 </html>
+<div class="cat-detail" id="mainecoon">
+  <h2>Maine Coon</h2>
+  <img src="https://cdn.pixabay.com/photo/2018/06/25/09/24/cat-3497030_1280.jpg" alt="Maine Coon">
+  <p><strong>Origin:</strong> United States (Maine)</p>
+  <p><strong>Height:</strong> 25–41 cm</p>
+  <p><strong>Weight:</strong> 4.5–11 kg</p>
+  <p><strong>Life Span:</strong> 12–15 years</p>
+  <p><strong>Friendliness:</strong> Gentle and friendly</p>
+  <p><strong>Personality:</strong> Intelligent, laid-back, loyal</p>
+  <p><strong>Grooming Needs:</strong> High (due to long fur)</p>
+  <p><strong>Fun Fact:</strong> Known as "gentle giants" of the cat world.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="persian">
+  <h2>Persian</h2>
+  <img src="https://cdn.pixabay.com/photo/2016/01/05/13/58/cat-1123340_1280.jpg" alt="Persian Cat">
+  <p><strong>Origin:</strong> Iran (Persia)</p>
+  <p><strong>Height:</strong> 25–38 cm</p>
+  <p><strong>Weight:</strong> 3–5.5 kg</p>
+  <p><strong>Life Span:</strong> 12–17 years</p>
+  <p><strong>Friendliness:</strong> Calm and affectionate</p>
+  <p><strong>Personality:</strong> Quiet, sweet, loving</p>
+  <p><strong>Grooming Needs:</strong> Very high</p>
+  <p><strong>Fun Fact:</strong> Requires daily grooming due to thick coat.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="bengal">
+  <h2>Bengal</h2>
+  <img src="https://cdn.pixabay.com/photo/2020/05/02/09/41/bengal-cat-5120461_1280.jpg" alt="Bengal Cat">
+  <p><strong>Origin:</strong> USA</p>
+  <p><strong>Height:</strong> 20–25 cm</p>
+  <p><strong>Weight:</strong> 3.5–7 kg</p>
+  <p><strong>Life Span:</strong> 12–16 years</p>
+  <p><strong>Friendliness:</strong> Energetic and playful</p>
+  <p><strong>Personality:</strong> Active, confident, intelligent</p>
+  <p><strong>Grooming Needs:</strong> Low</p>
+  <p><strong>Fun Fact:</strong> Bred from domestic and Asian leopard cats.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="abyssinian">
+  <h2>Abyssinian</h2>
+  <img src="https://cdn.pixabay.com/photo/2016/04/20/18/39/abyssinian-cat-1342996_1280.jpg" alt="Abyssinian Cat">
+  <p><strong>Origin:</strong> Ethiopia</p>
+  <p><strong>Height:</strong> 20–25 cm</p>
+  <p><strong>Weight:</strong> 3–5 kg</p>
+  <p><strong>Life Span:</strong> 9–15 years</p>
+  <p><strong>Friendliness:</strong> Sociable and lively</p>
+  <p><strong>Personality:</strong> Energetic, curious, loyal</p>
+  <p><strong>Grooming Needs:</strong> Low</p>
+  <p><strong>Fun Fact:</strong> One of the oldest known cat breeds.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="sphynx">
+  <h2>Sphynx</h2>
+  <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/sphynx-2783871_1280.jpg" alt="Sphynx Cat">
+  <p><strong>Origin:</strong> Canada</p>
+  <p><strong>Height:</strong> 20–25 cm</p>
+  <p><strong>Weight:</strong> 3–6 kg</p>
+  <p><strong>Life Span:</strong> 8–14 years</p>
+  <p><strong>Friendliness:</strong> Very affectionate</p>
+  <p><strong>Personality:</strong> Playful, extroverted, cuddly</p>
+  <p><strong>Grooming Needs:</strong> Moderate (needs skin care)</p>
+  <p><strong>Fun Fact:</strong> Despite being hairless, they’re extremely warm and loving.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="ragdoll">
+  <h2>Ragdoll</h2>
+  <img src="https://cdn.pixabay.com/photo/2022/05/09/12/27/ragdoll-7182711_1280.jpg" alt="Ragdoll Cat">
+  <p><strong>Origin:</strong> United States</p>
+  <p><strong>Height:</strong> 23–28 cm</p>
+  <p><strong>Weight:</strong> 4.5–9 kg</p>
+  <p><strong>Life Span:</strong> 13–18 years</p>
+  <p><strong>Friendliness:</strong> Extremely affectionate</p>
+  <p><strong>Personality:</strong> Gentle, calm, loving</p>
+  <p><strong>Grooming Needs:</strong> Moderate</p>
+  <p><strong>Fun Fact:</strong> They go limp in your arms like a ragdoll!</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+<div class="cat-detail" id="scottish">
+  <h2>Scottish Fold</h2>
+  <img src="https://cdn.pixabay.com/photo/2019/09/14/22/56/scottish-fold-4475868_1280.jpg" alt="Scottish Fold Cat">
+  <p><strong>Origin:</strong> Scotland</p>
+  <p><strong>Height:</strong> 20–25 cm</p>
+  <p><strong>Weight:</strong> 2.5–6 kg</p>
+  <p><strong>Life Span:</strong> 11–14 years</p>
+  <p><strong>Friendliness:</strong> Affectionate and quiet</p>
+  <p><strong>Personality:</strong> Easy-going, playful, loyal</p>
+  <p><strong>Grooming Needs:</strong> Moderate</p>
+  <p><strong>Fun Fact:</strong> Famous for their unique folded ears caused by a genetic mutation.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="russianblue">
+  <h2>Russian Blue</h2>
+  <img src="https://cdn.pixabay.com/photo/2021/07/22/10/20/russian-blue-6484184_1280.jpg" alt="Russian Blue Cat">
+  <p><strong>Origin:</strong> Russia</p>
+  <p><strong>Height:</strong> 20–25 cm</p>
+  <p><strong>Weight:</strong> 3–5.5 kg</p>
+  <p><strong>Life Span:</strong> 15–20 years</p>
+  <p><strong>Friendliness:</strong> Reserved but affectionate</p>
+  <p><strong>Personality:</strong> Quiet, intelligent, sensitive</p>
+  <p><strong>Grooming Needs:</strong> Low</p>
+  <p><strong>Fun Fact:</strong> Their dense coat reflects light and appears silver-blue.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="british">
+  <h2>British Shorthair</h2>
+  <img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="British Shorthair Cat">
+  <p><strong>Origin:</strong> United Kingdom</p>
+  <p><strong>Height:</strong> 30–35 cm</p>
+  <p><strong>Weight:</strong> 4–8 kg</p>
+  <p><strong>Life Span:</strong> 12–17 years</p>
+  <p><strong>Friendliness:</strong> Friendly but independent</p>
+  <p><strong>Personality:</strong> Easy-going, loyal, quiet</p>
+  <p><strong>Grooming Needs:</strong> Low to moderate</p>
+  <p><strong>Fun Fact:</strong> Known for their plush coats and chubby cheeks.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="american">
+  <h2>American Curl</h2>
+  <img src="https://cdn.pixabay.com/photo/2020/01/26/17/29/cat-4793315_1280.jpg" alt="American Curl Cat">
+  <p><strong>Origin:</strong> United States</p>
+  <p><strong>Height:</strong> 22–27 cm</p>
+  <p><strong>Weight:</strong> 2.5–5 kg</p>
+  <p><strong>Life Span:</strong> 12–16 years</p>
+  <p><strong>Friendliness:</strong> Very sociable</p>
+  <p><strong>Personality:</strong> Curious, friendly, adaptable</p>
+  <p><strong>Grooming Needs:</strong> Low</p>
+  <p><strong>Fun Fact:</strong> Recognized for their distinctive backward-curling ears.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
+
+<div class="cat-detail" id="norwegian">
+  <h2>Norwegian Forest</h2>
+  <img src="https://cdn.pixabay.com/photo/2020/12/06/18/49/norwegian-forest-cat-5808570_1280.jpg" alt="Norwegian Forest Cat">
+  <p><strong>Origin:</strong> Norway</p>
+  <p><strong>Height:</strong> 23–30 cm</p>
+  <p><strong>Weight:</strong> 4.5–9 kg</p>
+  <p><strong>Life Span:</strong> 12–16 years</p>
+  <p><strong>Friendliness:</strong> Friendly and robust</p>
+  <p><strong>Personality:</strong> Independent, playful, calm</p>
+  <p><strong>Grooming Needs:</strong> High (thick double coat)</p>
+  <p><strong>Fun Fact:</strong> A natural climber, once used as a ship cat by Vikings.</p>
+  <a href="#" class="back">← Back to Top</a>
+</div>
