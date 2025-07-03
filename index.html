@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cat Species Gallery</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      font-family: Arial, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4a4a4a;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 2rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .cat-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .cat-card:hover {
+      transform: scale(1.05);
+    }
+    .cat-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .cat-card h3 {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #4a4a4a;
+      color: #fff;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🐾 Cat Species Gallery 🐾
+  </header>
+  <div class="gallery">
+    <a href="siamese.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2019/03/30/14/07/siamese-cat-4092616_1280.jpg" alt="Siamese"><h3>Siamese</h3></div></a>
+    <a href="mainecoon.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2018/06/25/09/24/cat-3497030_1280.jpg" alt="Mainecoon"><h3>Mainecoon</h3></div></a>
+    <a href="persian.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2016/01/05/13/58/cat-1123340_1280.jpg" alt="Persian"><h3>Persian</h3></div></a>
+    <a href="bengal.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/05/02/09/41/bengal-cat-5120461_1280.jpg" alt="Bengal"><h3>Bengal</h3></div></a>
+    <a href="abyssinian.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2016/04/20/18/39/abyssinian-cat-1342996_1280.jpg" alt="Abyssinian"><h3>Abyssinian</h3></div></a>
+    <a href="sphynx.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/sphynx-2783871_1280.jpg" alt="Sphynx"><h3>Sphynx</h3></div></a>
+    <a href="ragdoll.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2022/05/09/12/27/ragdoll-7182711_1280.jpg" alt="Ragdoll"><h3>Ragdoll</h3></div></a>
+    <a href="scottish.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2019/09/14/22/56/scottish-fold-4475868_1280.jpg" alt="Scottish"><h3>Scottish</h3></div></a>
+    <a href="russianblue.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2021/07/22/10/20/russian-blue-6484184_1280.jpg" alt="Russianblue"><h3>Russianblue</h3></div></a>
+    <a href="british.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="British"><h3>British</h3></div></a>
+    <a href="american.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/01/26/17/29/cat-4793315_1280.jpg" alt="American"><h3>American</h3></div></a>
+    <a href="norwegian.html"><div class="cat-card"><img src="https://cdn.pixabay.com/photo/2020/12/06/18/49/norwegian-forest-cat-5808570_1280.jpg" alt="Norwegian"><h3>Norwegian</h3></div></a>
+  </div>
+  <footer>
+    © 2025 Cat Species Gallery | Hosted on GitHub Pages
+  </footer>
+</body>
+</html>
