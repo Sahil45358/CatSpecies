@@ -11,13 +11,15 @@
       --header-bg: #2e7d32;
       --footer-bg: #1b5e20;
     }
-    body.dark {
-      background-color: #121212;
-      --bg-color: #121212;
-      --text-color: #f1f1f1;
-      --header-bg: #333;
-      --footer-bg: #222;
-    }
+body.dark {
+  background-image: none !important;
+  background-color: #121212 !important;
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+  --header-bg: #333;
+  --footer-bg: #222;
+}
     html { scroll-behavior: smooth; }
     body {
       background: url('images/leaves-bg.jpg') center/cover fixed;
@@ -289,11 +291,16 @@
   </footer>
 
   <script>
- function toggleMode() {
-      document.body.classList.toggle("dark");
-      const btn = document.getElementById("modeToggle");
-      btn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
-    }
+function toggleMode() {
+  const body = document.body;
+  const toggleBtn = document.getElementById("modeToggle");
+
+  body.classList.toggle("dark");
+
+  toggleBtn.textContent = body.classList.contains("dark")
+    ? "☀️ Light Mode"
+    : "🌙 Dark Mode";
+}
     
     function closeModal() {
     document.getElementById("welcomeModal").style.display = "none";
