@@ -19,6 +19,22 @@ body.dark {
   --card-bg: #1e1e1e;
   --header-bg: #333;
   --footer-bg: #222;
+  body.dark .cat-card,
+body.dark .cat-detail {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark .cat-card h3,
+body.dark .cat-detail p,
+body.dark .cat-detail h2 {
+  color: #f1f1f1;
+}
+
+body.dark .back {
+  background-color: #333;
+  color: #f1f1f1;
+}
 }
     html { scroll-behavior: smooth; }
     body {
@@ -313,39 +329,41 @@ function toggleMode() {
       closeModal();
     }
   });
-    function filterCats() {
+function filterCats() {
   const input = document.getElementById("searchInput").value.toLowerCase();
-  const grooming = Array.from(document.querySelectorAll(".grooming-filter:checked")).map(el => el.value);
-  const friendly = Array.from(document.querySelectorAll(".friendliness-filter:checked")).map(el => el.value);
-  const sort = document.getElementById("sortSelect").value;
+  const groomingFilters = Array.from(document.querySelectorAll(".grooming-filter:checked")).map(el => el.value.toLowerCase());
+  const friendlinessFilters = Array.from(document.querySelectorAll(".friendliness-filter:checked")).map(el => el.value.toLowerCase());
+  const sortValue = document.getElementById("sortSelect").value;
 
   const cards = Array.from(document.querySelectorAll(".cat-card"));
 
   cards.forEach(card => {
     const name = card.querySelector("h3").textContent.toLowerCase();
-    const link = card.parentElement.getAttribute("href"); // get "#siamese"
-    const detail = document.querySelector(link);
-    const text = detail ? detail.textContent.toLowerCase() : "";
+    const href = card.parentElement.getAttribute("href");
+    const detail = document.querySelector(href);
+    const detailText = detail ? detail.textContent.toLowerCase() : "";
 
-    const matchesSearch = name.includes(input) || text.includes(input);
-    const matchesGrooming = grooming.length === 0 || grooming.some(g => text.includes(g));
-    const matchesFriendly = friendly.length === 0 || friendly.some(f => text.includes(f));
+    const matchesSearch = name.includes(input) || detailText.includes(input);
+    const matchesGrooming = groomingFilters.length === 0 || groomingFilters.some(f => detailText.includes(f));
+    const matchesFriendliness = friendlinessFilters.length === 0 || friendlinessFilters.some(f => detailText.includes(f));
 
-    card.style.display = (matchesSearch && matchesGrooming && matchesFriendly) ? "" : "none";
+    const show = matchesSearch && matchesGrooming && matchesFriendliness;
+    card.style.display = show ? "" : "none";
   });
 
-  // Sort cards A–Z or Z–A
+  // Sort visible cards
   const gallery = document.querySelector(".gallery");
-  const visible = cards.filter(card => card.style.display !== "none");
+  const visibleCards = cards.filter(card => card.style.display !== "none");
 
-  visible.sort((a, b) => {
-    const A = a.querySelector("h3").textContent.toLowerCase();
-    const B = b.querySelector("h3").textContent.toLowerCase();
-    return sort === "az" ? A.localeCompare(B) : B.localeCompare(A);
+  visibleCards.sort((a, b) => {
+    const nameA = a.querySelector("h3").textContent.toLowerCase();
+    const nameB = b.querySelector("h3").textContent.toLowerCase();
+    return sortValue === "az" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
   });
 
-  visible.forEach(card => gallery.appendChild(card));
+  visibleCards.forEach(card => gallery.appendChild(card));
 }
+
   </script>
 
 </body>
