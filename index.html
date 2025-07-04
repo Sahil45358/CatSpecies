@@ -71,11 +71,12 @@
   <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
 </div>
     
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
     }
     .cat-card {
       background-color: rgba(255, 255, 255, 0.9);
@@ -239,25 +240,6 @@
   cursor: pointer;
   color: #444;
 }
-  <div class="search-filter">
-  <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
-
-  <div class="filters">
-    <label><input type="checkbox" class="grooming-filter" value="Low"> Low Grooming</label>
-    <label><input type="checkbox" class="grooming-filter" value="Moderate"> Moderate Grooming</label>
-    <label><input type="checkbox" class="grooming-filter" value="High"> High Grooming</label>
-
-    <label><input type="checkbox" class="friendliness-filter" value="Very"> Very Friendly</label>
-    <label><input type="checkbox" class="friendliness-filter" value="Sociable"> Sociable</label>
-    <label><input type="checkbox" class="friendliness-filter" value="Reserved"> Reserved</label>
-    <label><input type="checkbox" class="friendliness-filter" value="Independent"> Independent</label>
-  </div>
-
-  <select id="sortSelect" onchange="filterCats()">
-    <option value="az">Sort A–Z</option>
-    <option value="za">Sort Z–A</option>
-  </select>
-</div>
     
 #searchInput {
   width: 100%;
@@ -300,6 +282,26 @@
   font-size: 0.95rem;
 }
 
+     <div class="search-filter">
+  <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
+
+  <div class="filters">
+    <label><input type="checkbox" class="grooming-filter" value="Low"> Low Grooming</label>
+    <label><input type="checkbox" class="grooming-filter" value="Moderate"> Moderate Grooming</label>
+    <label><input type="checkbox" class="grooming-filter" value="High"> High Grooming</label>
+
+    <label><input type="checkbox" class="friendliness-filter" value="Very"> Very Friendly</label>
+    <label><input type="checkbox" class="friendliness-filter" value="Sociable"> Sociable</label>
+    <label><input type="checkbox" class="friendliness-filter" value="Reserved"> Reserved</label>
+    <label><input type="checkbox" class="friendliness-filter" value="Independent"> Independent</label>
+  </div>
+
+  <select id="sortSelect" onchange="filterCats()">
+    <option value="az">Sort A–Z</option>
+    <option value="za">Sort Z–A</option>
+  </select>
+</div>
+    
   </style>
   
 </head>
