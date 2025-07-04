@@ -8,571 +8,326 @@
     :root {
       --bg-color: #e8f5e9;
       --text-color: #222;
-      --card-bg: white;
       --header-bg: #2e7d32;
       --footer-bg: #1b5e20;
     }
     body.dark {
-  background-image: none !important;
-  background-color: #121212 !important;
+      background-color: #121212;
       --bg-color: #121212;
       --text-color: #f1f1f1;
-      --card-bg: #1e1e1e;
       --header-bg: #333;
       --footer-bg: #222;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
-  background-image: url('images/leaves-bg.jpg');
-      background-image: url('images/leaves-bg.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: all 0.4s ease-in-out;
+      background: url('images/leaves-bg.jpg') center/cover fixed;
+      margin:0; padding:0;
+      color:var(--text-color);
+      font-family:'Segoe UI',sans-serif;
+      transition: background-color 0.4s, color 0.4s;
     }
-    header {
-      background-color: var(--header-bg);
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      font-size: 2rem;
-      font-weight: bold;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    header { background:var(--header-bg); color:#fff; text-align:center; padding:2rem; font-size:2rem; font-weight:bold; }
+    .toggle-btn { position:absolute; top:1rem; right:1rem; background:#ffc107; border:none; padding:8px 12px; cursor:pointer; border-radius:5px; }
+    .intro { background:rgba(255,255,255,0.85); margin:1rem; padding:2rem; border-radius:10px; text-align:center; color:#2e7d32; }
+
+    .search-filter { display:flex; flex-direction:column; align-items:center; padding:1rem 2rem; }
+    .search-filter input, .search-filter select {
+      width:100%; max-width:500px; padding:0.8rem 1rem; border-radius:8px; border:1px solid #ccc; font-size:1rem;
     }
-    .toggle-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background-color: #ffc107;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 5px;
+    .filters { display:flex; flex-wrap:wrap; gap:1rem; max-width:600px; justify-content:center; }
+    .filters label { font-size:0.95rem; }
+
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem; padding:2rem; }
+    .cat-card { background:rgba(255,255,255,0.9); border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.15); overflow:hidden; transition:transform 0.3s; }
+    .cat-card:hover { transform:scale(1.05); }
+    .cat-card img { width:100%; height:200px; object-fit:cover; }
+    .cat-card h3 { margin:1rem 0; color:#2e7d32; }
+
+    .cat-detail { background:rgba(255,255,255,0.92); padding:1.5rem; margin:1.5rem auto; border-radius:12px; max-width:800px; }
+    .cat-detail img { width:100%; max-width:500px; margin:1rem auto; display:block; border-radius:10px; }
+    .cat-detail h2 { text-align:center; font-size:2rem; margin-top:0; }
+    .cat-detail p { line-height:1.6; font-size:1rem; margin:0.5rem 0; }
+    .back { display:inline-block; margin-top:1rem; color:#2e7d32; background:#e0f2f1; padding:6px 10px; border-radius:6px; text-decoration:none; }
+
+    footer { background:var(--footer-bg); color:#fff; text-align:center; padding:2rem; font-size:0.9rem; }
+    .modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(34,34,34,0.7); display:flex; align-items:center; justify-content:center; z-index:9999; }
+    .modal-content { background:#fff; padding:2rem; border-radius:15px; max-width:90%; width:90%; text-align:center; position:relative; color:#2e7d32; }
+    .modal-content h1 { font-size:2rem; margin-bottom:1rem; word-wrap:break-word; }
+    .close-btn { position:absolute; top:12px; right:15px; font-size:1.5rem; background:none; border:none; cursor:pointer; }
+
+    @media (max-width:600px) {
+      header { font-size:1.4rem; padding:1.5rem; }
+      .gallery { grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); padding:1rem; gap:1rem; }
+      .cat-card img { height:150px; }
+      .cat-detail, .search-filter { margin:1rem; padding:1rem; }
+      .modal-content h1 { font-size:1.3rem; }
+      .toggle-btn { padding:6px 10px; font-size:0.9rem; }
     }
-    .intro {
-      background-color: rgba(255, 255, 255, 0.85);
-      margin: 1rem;
-      padding: 2rem;
-      border-radius: 10px;
-      text-align: center;
-      color: #2e7d32;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    <div class="search-filter">
-  <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
-</div>
-    
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-}
-    }
-    .cat-card {
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s;
-      cursor: pointer;
-      color: #2e7d32;
-      text-decoration: none;
-    }
-    .cat-card:hover {
-      transform: scale(1.05);
-    }
-    .cat-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      object-position: center;
-      border-bottom: 1px solid #ccc;
-    }
-    .cat-card h3 {
-      margin: 1rem 0;
-      font-size: 1.2rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-    .cat-detail {
-      background-color: rgba(255, 255, 255, 0.92);
-      padding: 1.5rem;
-      margin: 1.5rem auto;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      color: #2e7d32;
-      max-width: 800px;
-    }
-    .cat-detail img {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      border-radius: 10px;
-      display: block;
-      margin: 1rem auto;
-    }
-    .cat-detail h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-top: 0.5rem;
-    }
-    .cat-detail p {
-      line-height: 1.6;
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      color: #333;
-    }
-    .back {
-      display: inline-block;
-      margin-top: 1rem;
-      color: #2e7d32;
-      background: #e0f2f1;
-      padding: 6px 10px;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    footer {
-      background-color: var(--footer-bg);
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-    }
-    .nowrap {
-  white-space: nowrap;
-  display: inline-block;
-}
-    @media (max-width: 600px) {
-  header {
-    font-size: 1.4rem;
-    padding: 1.5rem;
-  }
-
-  .modal-content h1 {
-    font-size: 1.3rem;
-  }
-
-  .modal-content p {
-    font-size: 1rem;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .cat-card img {
-    height: 150px;
-  }
-
-  .cat-detail {
-    margin: 1rem;
-    padding: 1rem;
-  }
-
-  .toggle-btn {
-    padding: 6px 10px;
-    font-size: 0.9rem;
-  }
-}
-    .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(34, 34, 34, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 1;
-  animation: fadeIn 0.4s ease-in;
-}
-  
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.modal-content {
-  background: white;
-  padding: 2rem 3rem;
-  border-radius: 15px;
-  max-width: 600px;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  position: relative;
-  color: #2e7d32;
-}
-
-.modal-content h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  word-wrap: break-word;
-  text-align: center;
-}
-
-.modal-content p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #444;
-}
-    
-#searchInput {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-    .search-filter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 2rem;
-}
-
-.search-filter input,
-.search-filter select {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 600px;
-  justify-content: center;
-}
-
-.filters label {
-  font-size: 0.95rem;
-}
-
-     <div class="search-filter">
-  <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
-
-  <div class="filters">
-    <label><input type="checkbox" class="grooming-filter" value="Low"> Low Grooming</label>
-    <label><input type="checkbox" class="grooming-filter" value="Moderate"> Moderate Grooming</label>
-    <label><input type="checkbox" class="grooming-filter" value="High"> High Grooming</label>
-
-    <label><input type="checkbox" class="friendliness-filter" value="Very"> Very Friendly</label>
-    <label><input type="checkbox" class="friendliness-filter" value="Sociable"> Sociable</label>
-    <label><input type="checkbox" class="friendliness-filter" value="Reserved"> Reserved</label>
-    <label><input type="checkbox" class="friendliness-filter" value="Independent"> Independent</label>
-  </div>
-
-  <select id="sortSelect" onchange="filterCats()">
-    <option value="az">Sort A–Z</option>
-    <option value="za">Sort Z–A</option>
-  </select>
-</div>
-    
   </style>
-  
 </head>
 <body>
+
   <div id="welcomeModal" class="modal-overlay">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal()">✖</button>
-    <h1><span class="nowrap">🐾 Welcome to the Cat Species Gallery 🐾</span></h1>
-    <p>Learn about the unique characteristics, behaviors, and beauty of various cat breeds.</p>
-    <p>Discover fun facts, grooming tips, and fascinating personalities of your favorite feline friends!</p>
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">✖</button>
+      <h1>🐾 Welcome to the Cat Species Gallery 🐾</h1>
+      <p>Explore unique traits, grooming tips, and fun facts about cat breeds.</p>
+    </div>
   </div>
-</div>
-  
+
   <button class="toggle-btn" id="modeToggle" onclick="toggleMode()">🌙 Dark Mode</button>
-  <header id="top">🐾 Welcome to the Cat Species Gallery 🐾</header>
+  <header id="top">🐾 Cat Species Gallery 🐾</header>
   <section class="intro">
     <h2>🌿 Explore the World of Cats</h2>
-    <p>Learn about the unique characteristics, behaviors, and beauty of various cat breeds.</p>
+    <p>Learn about unique characteristics, behaviors, and beauty of various cat breeds.</p>
   </section>
+
+  <div class="search-filter">
+    <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
+    <div class="filters">
+      <label><input type="checkbox" class="grooming-filter" value="low"> Low Grooming</label>
+      <label><input type="checkbox" class="grooming-filter" value="moderate"> Moderate Grooming</label>
+      <label><input type="checkbox" class="grooming-filter" value="high"> High Grooming</label>
+      <label><input type="checkbox" class="friendliness-filter" value="very"> Very Friendly</label>
+      <label><input type="checkbox" class="friendliness-filter" value="sociable"> Sociable</label>
+      <label><input type="checkbox" class="friendliness-filter" value="reserved"> Reserved</label>
+      <label><input type="checkbox" class="friendliness-filter" value="independent"> Independent</label>
+    </div>
+    <select id="sortSelect" onchange="filterCats()">
+      <option value="az">Sort A–Z</option>
+      <option value="za">Sort Z–A</option>
+    </select>
+  </div>
+
   <div class="gallery">
-  <a href="#siamese"><div class="cat-card"><img src="images/siamese.jpg" alt="Siamese"><h3>Siamese</h3></div></a>
-  <a href="#mainecoon"><div class="cat-card"><img src="images/mainecoon.jpg" alt="Maine Coon"><h3>Maine Coon</h3></div></a>
-  <a href="#persian"><div class="cat-card"><img src="images/persian.jpg" alt="Persian"><h3>Persian</h3></div></a>
-  <a href="#bengal"><div class="cat-card"><img src="images/bengal.jpg" alt="Bengal"><h3>Bengal</h3></div></a>
-  <a href="#abyssinian"><div class="cat-card"><img src="images/abyssinian.jpg" alt="Abyssinian"><h3>Abyssinian</h3></div></a>
-  <a href="#sphynx"><div class="cat-card"><img src="images/sphynx.jpg" alt="Sphynx"><h3>Sphynx</h3></div></a>
-  <a href="#ragdoll"><div class="cat-card"><img src="images/ragdoll.jpg" alt="Ragdoll"><h3>Ragdoll</h3></div></a>
-  <a href="#scottish"><div class="cat-card"><img src="images/scottish.jpg" alt="Scottish Fold"><h3>Scottish Fold</h3></div></a>
-  <a href="#russianblue"><div class="cat-card"><img src="images/russianblue.jpg" alt="Russian Blue"><h3>Russian Blue</h3></div></a>
-  <a href="#british"><div class="cat-card"><img src="images/british.jpg" alt="British Shorthair"><h3>British Shorthair</h3></div></a>
-  <a href="#american"><div class="cat-card"><img src="images/american.jpg" alt="American Curl"><h3>American Curl</h3></div></a>
-  <a href="#norwegian"><div class="cat-card"><img src="images/norwegian.jpg" alt="Norwegian Forest"><h3>Norwegian Forest</h3></div></a>
-</div>
+    <a href="#siamese"><div class="cat-card"><img src="images/siamese.jpg" alt="Siamese"><h3>Siamese</h3></div></a>
+    <a href="#mainecoon"><div class="cat-card"><img src="images/mainecoon.jpg" alt="Maine Coon"><h3>Maine Coon</h3></div></a>
+    <a href="#persian"><div class="cat-card"><img src="images/persian.jpg" alt="Persian"><h3>Persian</h3></div></a>
+    <a href="#bengal"><div class="cat-card"><img src="images/bengal.jpg" alt="Bengal"><h3>Bengal</h3></div></a>
+    <a href="#abyssinian"><div class="cat-card"><img src="images/abyssinian.jpg" alt="Abyssinian"><h3>Abyssinian</h3></div></a>
+    <a href="#sphynx"><div class="cat-card"><img src="images/sphynx.jpg" alt="Sphynx"><h3>Sphynx</h3></div></a>
+    <a href="#ragdoll"><div class="cat-card"><img src="images/ragdoll.jpg" alt="Ragdoll"><h3>Ragdoll</h3></div></a>
+    <a href="#scottish"><div class="cat-card"><img src="images/scottish.jpg" alt="Scottish Fold"><h3>Scottish Fold</h3></div></a>
+    <a href="#russianblue"><div class="cat-card"><img src="images/russianblue.jpg" alt="Russian Blue"><h3>Russian Blue</h3></div></a>
+    <a href="#british"><div class="cat-card"><img src="images/british.jpg" alt="British Shorthair"><h3>British Shorthair</h3></div></a>
+    <a href="#american"><div class="cat-card"><img src="images/american.jpg" alt="American Curl"><h3>American Curl</h3></div></a>
+    <a href="#norwegian"><div class="cat-card"><img src="images/norwegian.jpg" alt="Norwegian Forest"><h3>Norwegian Forest</h3></div></a>
+  </div>
 
-<div class="cat-detail" id="siamese">
-  <h2>Siamese</h2>
-  <img src="images/siamese.jpg" alt="Siamese" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Thailand (formerly Siam)</p>
-  <p><strong>Height:</strong> 20–25 cm</p>
-  <p><strong>Weight:</strong> 2.5–5.5 kg</p>
-  <p><strong>Life Span:</strong> 12–20 years</p>
-  <p><strong>Friendliness:</strong> Very social and affectionate</p>
-  <p><strong>Personality:</strong> Vocal, intelligent, curious, people-oriented</p>
-  <p><strong>Grooming Needs:</strong> Low (short coat)</p>
-  <p><strong>Fun Fact:</strong> Siamese cats are known for their striking blue eyes and "talkative" nature.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <!-- Detail sections with full info -->
+  <div class="cat-detail" id="siamese">
+    <h2>Siamese</h2>
+    <img src="images/siamese.jpg" alt="Siamese">
+    <p><strong>Origin:</strong> Thailand (formerly Siam)</p>
+    <p><strong>Height:</strong> 20–25 cm</p>
+    <p><strong>Weight:</strong> 2.5–5.5 kg</p>
+    <p><strong>Life Span:</strong> 12–20 years</p>
+    <p><strong>Friendliness:</strong> Very social and affectionate</p>
+    <p><strong>Personality:</strong> Vocal, intelligent, curious, people-oriented</p>
+    <p><strong>Grooming Needs:</strong> Low (short coat)</p>
+    <p><strong>Fun Fact:</strong> Siamese cats are known for their striking blue eyes and “talkative” nature.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="mainecoon">
-  <h2>Maine Coon</h2>
-  <img src="images/mainecoon.jpg" alt="Maine Coon" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> United States (Maine)</p>
-  <p><strong>Height:</strong> 25–41 cm</p>
-  <p><strong>Weight:</strong> 4.5–11 kg</p>
-  <p><strong>Life Span:</strong> 12–15 years</p>
-  <p><strong>Friendliness:</strong> Gentle and friendly</p>
-  <p><strong>Personality:</strong> Intelligent, laid-back, loyal</p>
-  <p><strong>Grooming Needs:</strong> High (due to long fur)</p>
-  <p><strong>Fun Fact:</strong> Known as "gentle giants" of the cat world.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <!-- Repeat above block for each breed below... -->
+  <div class="cat-detail" id="mainecoon">
+    <h2>Maine Coon</h2>
+    <img src="images/mainecoon.jpg" alt="Maine Coon">
+    <p><strong>Origin:</strong> United States (Maine)</p>
+    <p><strong>Height:</strong> 25–41 cm</p>
+    <p><strong>Weight:</strong> 4.5–11 kg</p>
+    <p><strong>Life Span:</strong> 12–15 years</p>
+    <p><strong>Friendliness:</strong> Gentle and friendly</p>
+    <p><strong>Personality:</strong> Intelligent, laid-back, loyal</p>
+    <p><strong>Grooming Needs:</strong> High (due to long fur)</p>
+    <p><strong>Fun Fact:</strong> Known as “gentle giants” of the cat world.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="persian">
-  <h2>Persian</h2>
-  <img src="images/persian.jpg" alt="Persian" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Iran (Persia)</p>
-  <p><strong>Height:</strong> 25–38 cm</p>
-  <p><strong>Weight:</strong> 3–5.5 kg</p>
-  <p><strong>Life Span:</strong> 12–17 years</p>
-  <p><strong>Friendliness:</strong> Calm and affectionate</p>
-  <p><strong>Personality:</strong> Quiet, sweet, loving</p>
-  <p><strong>Grooming Needs:</strong> Very high</p>
-  <p><strong>Fun Fact:</strong> Requires daily grooming due to thick coat.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="persian">
+    <h2>Persian</h2>
+    <img src="images/persian.jpg" alt="Persian">
+    <p><strong>Origin:</strong> Iran (Persia)</p>
+    <p><strong>Height:</strong> 25–38 cm</p>
+    <p><strong>Weight:</strong> 3–5.5 kg</p>
+    <p><strong>Life Span:</strong> 12–17 years</p>
+    <p><strong>Friendliness:</strong> Calm and affectionate</p>
+    <p><strong>Personality:</strong> Quiet, sweet, loving</p>
+    <p><strong>Grooming Needs:</strong> Very high</p>
+    <p><strong>Fun Fact:</strong> Requires daily grooming due to thick coat.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="bengal">
-  <h2>Bengal</h2>
-  <img src="images/bengal.jpg" alt="Bengal" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> USA</p>
-  <p><strong>Height:</strong> 20–25 cm</p>
-  <p><strong>Weight:</strong> 3.5–7 kg</p>
-  <p><strong>Life Span:</strong> 12–16 years</p>
-  <p><strong>Friendliness:</strong> Energetic and playful</p>
-  <p><strong>Personality:</strong> Active, confident, intelligent</p>
-  <p><strong>Grooming Needs:</strong> Low</p>
-  <p><strong>Fun Fact:</strong> Bred from domestic and Asian leopard cats.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="bengal">
+    <h2>Bengal</h2>
+    <img src="images/bengal.jpg" alt="Bengal">
+    <p><strong>Origin:</strong> USA</p>
+    <p><strong>Height:</strong> 20–25 cm</p>
+    <p><strong>Weight:</strong> 3.5–7 kg</p>
+    <p><strong>Life Span:</strong> 12–16 years</p>
+    <p><strong>Friendliness:</strong> Energetic and playful</p>
+    <p><strong>Personality:</strong> Active, confident, intelligent</p>
+    <p><strong>Grooming Needs:</strong> Low</p>
+    <p><strong>Fun Fact:</strong> Bred from domestic and Asian leopard cats.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="abyssinian">
-  <h2>Abyssinian</h2>
-  <img src="images/abyssinian.jpg" alt="Abyssinian" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Ethiopia</p>
-  <p><strong>Height:</strong> 20–25 cm</p>
-  <p><strong>Weight:</strong> 3–5 kg</p>
-  <p><strong>Life Span:</strong> 9–15 years</p>
-  <p><strong>Friendliness:</strong> Sociable and lively</p>
-  <p><strong>Personality:</strong> Energetic, curious, loyal</p>
-  <p><strong>Grooming Needs:</strong> Low</p>
-  <p><strong>Fun Fact:</strong> One of the oldest known cat breeds.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="abyssinian">
+    <h2>Abyssinian</h2>
+    <img src="images/abyssinian.jpg" alt="Abyssinian">
+    <p><strong>Origin:</strong> Ethiopia</p>
+    <p><strong>Height:</strong> 20–25 cm</p>
+    <p><strong>Weight:</strong> 3–5 kg</p>
+    <p><strong>Life Span:</strong> 9–15 years</p>
+    <p><strong>Friendliness:</strong> Sociable and lively</p>
+    <p><strong>Personality:</strong> Energetic, curious, loyal</p>
+    <p><strong>Grooming Needs:</strong> Low</p>
+    <p><strong>Fun Fact:</strong> One of the oldest known cat breeds.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="sphynx">
-  <h2>Sphynx</h2>
-  <img src="images/sphynx.jpg" alt="Sphynx" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Canada</p>
-  <p><strong>Height:</strong> 20–25 cm</p>
-  <p><strong>Weight:</strong> 3–6 kg</p>
-  <p><strong>Life Span:</strong> 8–14 years</p>
-  <p><strong>Friendliness:</strong> Very affectionate</p>
-  <p><strong>Personality:</strong> Playful, extroverted, cuddly</p>
-  <p><strong>Grooming Needs:</strong> Moderate (needs skin care)</p>
-  <p><strong>Fun Fact:</strong> Despite being hairless, they’re extremely warm and loving.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="sphynx">
+    <h2>Sphynx</h2>
+    <img src="images/sphynx.jpg" alt="Sphynx">
+    <p><strong>Origin:</strong> Canada</p>
+    <p><strong>Height:</strong> 20–25 cm</p>
+    <p><strong>Weight:</strong> 3–6 kg</p>
+    <p><strong>Life Span:</strong> 8–14 years</p>
+    <p><strong>Friendliness:</strong> Very affectionate</p>
+    <p><strong>Personality:</strong> Playful, extroverted, cuddly</p>
+    <p><strong>Grooming Needs:</strong> Moderate (needs skin care)</p>
+    <p><strong>Fun Fact:</strong> Despite being hairless, they’re extremely warm and loving.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="ragdoll">
-  <h2>Ragdoll</h2>
-  <img src="images/ragdoll.jpg" alt="Ragdoll" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> United States</p>
-  <p><strong>Height:</strong> 23–28 cm</p>
-  <p><strong>Weight:</strong> 4.5–9 kg</p>
-  <p><strong>Life Span:</strong> 13–18 years</p>
-  <p><strong>Friendliness:</strong> Extremely affectionate</p>
-  <p><strong>Personality:</strong> Gentle, calm, loving</p>
-  <p><strong>Grooming Needs:</strong> Moderate</p>
-  <p><strong>Fun Fact:</strong> They go limp in your arms like a ragdoll!</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
-    
-<div class="cat-detail" id="scottish">
-  <h2>Scottish Fold</h2>
-  <img src="images/scottish.jpg" alt="Scottish Fold" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Scotland</p>
-  <p><strong>Height:</strong> 20–25 cm</p>
-  <p><strong>Weight:</strong> 2.5–6 kg</p>
-  <p><strong>Life Span:</strong> 11–14 years</p>
-  <p><strong>Friendliness:</strong> Affectionate and quiet</p>
-  <p><strong>Personality:</strong> Easy-going, playful, loyal</p>
-  <p><strong>Grooming Needs:</strong> Moderate</p>
-  <p><strong>Fun Fact:</strong> Famous for their unique folded ears caused by a genetic mutation.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="ragdoll">
+    <h2>Ragdoll</h2>
+    <img src="images/ragdoll.jpg" alt="Ragdoll">
+    <p><strong>Origin:</strong> United States</p>
+    <p><strong>Height:</strong> 23–28 cm</p>
+    <p><strong>Weight:</strong> 4.5–9 kg</p>
+    <p><strong>Life Span:</strong> 13–18 years</p>
+    <p><strong>Friendliness:</strong> Extremely affectionate</p>
+    <p><strong>Personality:</strong> Gentle, calm, loving</p>
+    <p><strong>Grooming Needs:</strong> Moderate</p>
+    <p><strong>Fun Fact:</strong> They go limp in your arms like a ragdoll!</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="russianblue">
-  <h2>Russian Blue</h2>
-  <img src="images/russianblue.jpg" alt="Russian Blue" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Russia</p>
-  <p><strong>Height:</strong> 20–25 cm</p>
-  <p><strong>Weight:</strong> 3–5.5 kg</p>
-  <p><strong>Life Span:</strong> 15–20 years</p>
-  <p><strong>Friendliness:</strong> Reserved but affectionate</p>
-  <p><strong>Personality:</strong> Quiet, intelligent, sensitive</p>
-  <p><strong>Grooming Needs:</strong> Low</p>
-  <p><strong>Fun Fact:</strong> Their dense coat reflects light and appears silver-blue.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="scottish">
+    <h2>Scottish Fold</h2>
+    <img src="images/scottish.jpg" alt="Scottish Fold">
+    <p><strong>Origin:</strong> Scotland</p>
+    <p><strong>Height:</strong> 20–25 cm</p>
+    <p><strong>Weight:</strong> 2.5–6 kg</p>
+    <p><strong>Life Span:</strong> 11–14 years</p>
+    <p><strong>Friendliness:</strong> Affectionate and quiet</p>
+    <p><strong>Personality:</strong> Easy-going, playful, loyal</p>
+    <p><strong>Grooming Needs:</strong> Moderate</p>
+    <p><strong>Fun Fact:</strong> Famous for their unique folded ears.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="british">
-  <h2>British Shorthair</h2>
-  <img src="images/british.jpg" alt="British Shorthair" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> United Kingdom</p>
-  <p><strong>Height:</strong> 30–35 cm</p>
-  <p><strong>Weight:</strong> 4–8 kg</p>
-  <p><strong>Life Span:</strong> 12–17 years</p>
-  <p><strong>Friendliness:</strong> Friendly but independent</p>
-  <p><strong>Personality:</strong> Easy-going, loyal, quiet</p>
-  <p><strong>Grooming Needs:</strong> Low to moderate</p>
-  <p><strong>Fun Fact:</strong> Known for their plush coats and chubby cheeks.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="russianblue">
+    <h2>Russian Blue</h2>
+    <img src="images/russianblue.jpg" alt="Russian Blue">
+    <p><strong>Origin:</strong> Russia</p>
+    <p><strong>Height:</strong> 20–25 cm</p>
+    <p><strong>Weight:</strong> 3–5.5 kg</p>
+    <p><strong>Life Span:</strong> 15–20 years</p>
+    <p><strong>Friendliness:</strong> Reserved but affectionate</p>
+    <p><strong>Personality:</strong> Quiet, intelligent, sensitive</p>
+    <p><strong>Grooming Needs:</strong> Low</p>
+    <p><strong>Fun Fact:</strong> Their dense coat reflects light and appears silver-blue.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="american">
-  <h2>American Curl</h2>
-  <img src="images/american.jpg" alt="American Curl" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> United States</p>
-  <p><strong>Height:</strong> 22–27 cm</p>
-  <p><strong>Weight:</strong> 2.5–5 kg</p>
-  <p><strong>Life Span:</strong> 12–16 years</p>
-  <p><strong>Friendliness:</strong> Very sociable</p>
-  <p><strong>Personality:</strong> Curious, friendly, adaptable</p>
-  <p><strong>Grooming Needs:</strong> Low</p>
-  <p><strong>Fun Fact:</strong> Recognized for their distinctive backward-curling ears.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="british">
+    <h2>British Shorthair</h2>
+    <img src="images/british.jpg" alt="British Shorthair">
+    <p><strong>Origin:</strong> United Kingdom</p>
+    <p><strong>Height:</strong> 30–35 cm</p>
+    <p><strong>Weight:</strong> 4–8 kg</p>
+    <p><strong>Life Span:</strong> 12–17 years</p>
+    <p><strong>Friendliness:</strong> Friendly but independent</p>
+    <p><strong>Personality:</strong> Easy-going, loyal, quiet</p>
+    <p><strong>Grooming Needs:</strong> Low to moderate</p>
+    <p><strong>Fun Fact:</strong> Known for their plush coats and chubby cheeks.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
-<div class="cat-detail" id="norwegian">
-  <h2>Norwegian Forest</h2>
-  <img src="images/norwegian.jpg" alt="Norwegian Forest" style="width: 100%; max-width: 500px; border-radius: 10px;">
-  <p><strong>Origin:</strong> Norway</p>
-  <p><strong>Height:</strong> 23–30 cm</p>
-  <p><strong>Weight:</strong> 4.5–9 kg</p>
-  <p><strong>Life Span:</strong> 12–16 years</p>
-  <p><strong>Friendliness:</strong> Friendly and robust</p>
-  <p><strong>Personality:</strong> Independent, playful, calm</p>
-  <p><strong>Grooming Needs:</strong> High (thick double coat)</p>
-  <p><strong>Fun Fact:</strong> A natural climber, once used as a ship cat by Vikings.</p>
-  <a href="#top" class="back">← Back to Top</a>
-</div>
+  <div class="cat-detail" id="american">
+    <h2>American Curl</h2>
+    <img src="images/american.jpg" alt="American Curl">
+    <p><strong>Origin:</strong> United States</p>
+    <p><strong>Height:</strong> 22–27 cm</p>
+    <p><strong>Weight:</strong> 2.5–5 kg</p>
+    <p><strong>Life Span:</strong> 12–16 years</p>
+    <p><strong>Friendliness:</strong> Very sociable</p>
+    <p><strong>Personality:</strong> Curious, friendly, adaptable</p>
+    <p><strong>Grooming Needs:</strong> Low</p>
+    <p><strong>Fun Fact:</strong> Recognized for their distinctive backward‑curling ears.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
+
+  <div class="cat-detail" id="norwegian">
+    <h2>Norwegian Forest</h2>
+    <img src="images/norwegian.jpg" alt="Norwegian Forest">
+    <p><strong>Origin:</strong> Norway</p>
+    <p><strong>Height:</strong> 23–30 cm</p>
+    <p><strong>Weight:</strong> 4.5–9 kg</p>
+    <p><strong>Life Span:</strong> 12–16 years</p>
+    <p><strong>Friendliness:</strong> Friendly and robust</p>
+    <p><strong>Personality:</strong> Independent, playful, calm</p>
+    <p><strong>Grooming Needs:</strong> High (thick double coat)</p>
+    <p><strong>Fun Fact:</strong> A natural climber, once used as a ship cat by Vikings.</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Cat Species Gallery</p>
-    <p>Created by Sahil 🐱 | Contact: sahil@example.com</p>
-    <p>
-      <a href="mailto:sahil@example.com">Email Me</a> | <a href="https://github.com/sahil45358">GitHub</a>
-    </p>
+    <p>&copy; 2025 Cat Species Gallery | Created by Sahil 🐱 | <a href="mailto:sahil@example.com">Email Me</a></p>
   </footer>
-</div>
+
   <script>
-  function toggleMode() {
-    const body = document.body;
-    const toggleBtn = document.getElementById("modeToggle");
-
-    body.classList.toggle("dark");
-
-    if (body.classList.contains("dark")) {
-      toggleBtn.textContent = "☀️ Light Mode";
-    } else {
-      toggleBtn.textContent = "🌙 Dark Mode";
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+      const btn = document.getElementById("modeToggle");
+      btn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
     }
-  }
-
-  function closeModal() {
-    document.getElementById("welcomeModal").style.display = "none";
-  }
-
-  window.addEventListener("click", function (event) {
-    const modal = document.getElementById("welcomeModal");
-    if (event.target === modal) {
-      closeModal();
+    function closeModal() {
+      document.getElementById("welcomeModal").style.display = "none";
     }
-  });
+    window.addEventListener("click", e => {
+      if (e.target.id === "welcomeModal") closeModal();
+    });
+
     function filterCats() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const groomingFilters = Array.from(document.querySelectorAll(".grooming-filter:checked")).map(el => el.value.toLowerCase());
-  const friendlinessFilters = Array.from(document.querySelectorAll(".friendliness-filter:checked")).map(el => el.value.toLowerCase());
-  const sortValue = document.getElementById("sortSelect").value;
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const grooming = [...document.querySelectorAll(".grooming-filter:checked")].map(e => e.value);
+      const friendly = [...document.querySelectorAll(".friendliness-filter:checked")].map(e => e.value);
+      const sort = document.getElementById("sortSelect").value;
+      const cards = [...document.querySelectorAll(".cat-card")];
 
-  const cards = Array.from(document.querySelectorAll(".cat-card"));
+      cards.forEach(c => {
+        const name = c.querySelector("h3").textContent.toLowerCase();
+        const id = c.parentElement.hash.substring(1);
+        const text = document.getElementById(id).textContent.toLowerCase();
+        const okName = name.includes(input) || text.includes(input);
+        const okG = grooming.length ? grooming.some(val => text.includes(val)) : true;
+        const okF = friendly.length ? friendly.some(val => text.includes(val)) : true;
+        c.style.display = okName && okG && okF ? "" : "none";
+      });
 
-  cards.forEach(card => {
-    const name = card.querySelector("h3").textContent.toLowerCase();
-    const detailId = card.getAttribute("href").substring(1);
-    const detail = document.getElementById(detailId);
-    const detailText = detail ? detail.textContent.toLowerCase() : "";
-
-    const matchesSearch = name.includes(input) || detailText.includes(input);
-    const matchesGrooming = groomingFilters.length === 0 || groomingFilters.some(f => detailText.includes(f));
-    const matchesFriendliness = friendlinessFilters.length === 0 || friendlinessFilters.some(f => detailText.includes(f));
-
-    const show = matchesSearch && matchesGrooming && matchesFriendliness;
-    card.style.display = show ? "" : "none";
-  });
-
-  // Sort cards
-  const gallery = document.querySelector(".gallery");
-  const visibleCards = cards.filter(card => card.style.display !== "none");
-
-  visibleCards.sort((a, b) => {
-    const nameA = a.querySelector("h3").textContent.toLowerCase();
-    const nameB = b.querySelector("h3").textContent.toLowerCase();
-    return sortValue === "az" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
-  });
-
-  visibleCards.forEach(card => gallery.appendChild(card));
-}
-
-</script>
+      const gallery = document.querySelector(".gallery");
+      const visible = cards.filter(c => c.style.display !== "none");
+      visible.sort((a, b) => {
+        const A = a.querySelector("h3").textContent.toLowerCase();
+        const B = b.querySelector("h3").textContent.toLowerCase();
+        return sort === "az" ? A.localeCompare(B) : B.localeCompare(A);
+      });
+      visible.forEach(c => gallery.appendChild(c));
+    }
   </script>
-  
+
 </body>
 </html>
