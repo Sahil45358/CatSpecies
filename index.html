@@ -16,18 +16,28 @@ body.dark {
   background-color: #121212 !important;
   --bg-color: #121212;
   --text-color: #f1f1f1;
-  --card-bg: #1e1e1e;
   --header-bg: #333;
   --footer-bg: #222;
-  body.dark .cat-card,
+}
+
+    body.dark .search-filter {
+  background: #333;
+}
+body.dark .search-filter input,
+body.dark .search-filter select,
+body.dark .filters label {
+  color: #f1f1f1;
+}
+    
+body.dark .cat-card,
 body.dark .cat-detail {
   background-color: #1e1e1e;
   color: #f1f1f1;
 }
 
 body.dark .cat-card h3,
-body.dark .cat-detail p,
-body.dark .cat-detail h2 {
+body.dark .cat-detail h2,
+body.dark .cat-detail p {
   color: #f1f1f1;
 }
 
@@ -35,7 +45,7 @@ body.dark .back {
   background-color: #333;
   color: #f1f1f1;
 }
-}
+    
     html { scroll-behavior: smooth; }
     body {
       background: url('images/leaves-bg.jpg') center/cover fixed;
@@ -52,6 +62,11 @@ body.dark .back {
     .search-filter input, .search-filter select {
       width:100%; max-width:500px; padding:0.8rem 1rem; border-radius:8px; border:1px solid #ccc; font-size:1rem;
     }
+    .search-filter {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
     .filters { display:flex; flex-wrap:wrap; gap:1rem; max-width:600px; justify-content:center; }
     .filters label { font-size:0.95rem; }
 
