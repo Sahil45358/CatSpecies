@@ -67,6 +67,10 @@
       color: #2e7d32;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
+    <div class="search-filter">
+  <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
+</div>
+    
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -196,8 +200,7 @@
   opacity: 1;
   animation: fadeIn 0.4s ease-in;
 }
-
-    
+  
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -236,7 +239,67 @@
   cursor: pointer;
   color: #444;
 }
+  <div class="search-filter">
+  <input type="text" id="searchInput" placeholder="🔍 Search cats by name or trait..." onkeyup="filterCats()" />
+
+  <div class="filters">
+    <label><input type="checkbox" class="grooming-filter" value="Low"> Low Grooming</label>
+    <label><input type="checkbox" class="grooming-filter" value="Moderate"> Moderate Grooming</label>
+    <label><input type="checkbox" class="grooming-filter" value="High"> High Grooming</label>
+
+    <label><input type="checkbox" class="friendliness-filter" value="Very"> Very Friendly</label>
+    <label><input type="checkbox" class="friendliness-filter" value="Sociable"> Sociable</label>
+    <label><input type="checkbox" class="friendliness-filter" value="Reserved"> Reserved</label>
+    <label><input type="checkbox" class="friendliness-filter" value="Independent"> Independent</label>
+  </div>
+
+  <select id="sortSelect" onchange="filterCats()">
+    <option value="az">Sort A–Z</option>
+    <option value="za">Sort Z–A</option>
+  </select>
+</div>
     
+#searchInput {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    .search-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.search-filter input,
+.search-filter select {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 600px;
+  justify-content: center;
+}
+
+.filters label {
+  font-size: 0.95rem;
+}
+
   </style>
   
 </head>
@@ -471,6 +534,41 @@
       closeModal();
     }
   });
+    function filterCats() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const groomingFilters = Array.from(document.querySelectorAll(".grooming-filter:checked")).map(el => el.value.toLowerCase());
+  const friendlinessFilters = Array.from(document.querySelectorAll(".friendliness-filter:checked")).map(el => el.value.toLowerCase());
+  const sortValue = document.getElementById("sortSelect").value;
+
+  const cards = Array.from(document.querySelectorAll(".cat-card"));
+
+  cards.forEach(card => {
+    const name = card.querySelector("h3").textContent.toLowerCase();
+    const detailId = card.getAttribute("href").substring(1);
+    const detail = document.getElementById(detailId);
+    const detailText = detail ? detail.textContent.toLowerCase() : "";
+
+    const matchesSearch = name.includes(input) || detailText.includes(input);
+    const matchesGrooming = groomingFilters.length === 0 || groomingFilters.some(f => detailText.includes(f));
+    const matchesFriendliness = friendlinessFilters.length === 0 || friendlinessFilters.some(f => detailText.includes(f));
+
+    const show = matchesSearch && matchesGrooming && matchesFriendliness;
+    card.style.display = show ? "" : "none";
+  });
+
+  // Sort cards
+  const gallery = document.querySelector(".gallery");
+  const visibleCards = cards.filter(card => card.style.display !== "none");
+
+  visibleCards.sort((a, b) => {
+    const nameA = a.querySelector("h3").textContent.toLowerCase();
+    const nameB = b.querySelector("h3").textContent.toLowerCase();
+    return sortValue === "az" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+  });
+
+  visibleCards.forEach(card => gallery.appendChild(card));
+}
+
 </script>
   </script>
   
