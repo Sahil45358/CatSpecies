@@ -2,120 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cat Species Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐾 Cat Species Gallery 🐾</title>
   <style>
+    :root {
+      --bg-color: #e8f5e9;
+      --text-color: #222;
+      --card-bg: white;
+      --header-bg: #2e7d32;
+      --footer-bg: #1b5e20;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --card-bg: #1e1e1e;
+      --header-bg: #333;
+      --footer-bg: #222;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      background-image: url('images/leaves-bg.jpg'); /* Add a leafy image here */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.4s ease-in-out;
     }
+
     header {
-      background: #4a4a4a;
-      color: #fff;
+      background-color: var(--header-bg);
+      color: white;
       text-align: center;
-      padding: 1.5rem;
+      padding: 2rem;
       font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+
+    .toggle-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #ffc107;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .intro {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      text-align: center;
+    }
+
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
       padding: 2rem;
     }
+
     .cat-card {
-      background: #fff;
+      background-color: var(--card-bg);
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       overflow: hidden;
       text-align: center;
-      transition: 0.3s;
+      transition: transform 0.3s;
+      cursor: pointer;
     }
+
     .cat-card:hover {
       transform: scale(1.05);
     }
+
     .cat-card img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
     }
+
     .cat-card h3 {
-      margin: 0.5rem 0;
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      color: #2e7d32;
     }
-    .cat-detail {
-      padding: 2rem;
-      border-top: 2px solid #ccc;
-    }
-    .cat-detail img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-    .cat-detail h2 {
-      margin-top: 0;
-    }
+
     footer {
+      background-color: var(--footer-bg);
+      color: white;
       text-align: center;
-      padding: 1rem;
-      background: #4a4a4a;
-      color: #fff;
+      padding: 2rem;
+      font-size: 0.9rem;
     }
+
     a {
+      color: #ffc107;
       text-decoration: none;
-      color: inherit;
     }
-    .back {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #333;
-      color: #fff;
-      border-radius: 5px;
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>🐾 Cat Species Gallery 🐾</header>
+  <button class="toggle-btn" onclick="toggleMode()">🌙 Toggle Mode</button>
+
+  <header>
+    🐾 Welcome to the Cat Species Gallery 🐾
+  </header>
+
+  <section class="intro">
+    <h2>🌿 Explore the World of Cats</h2>
+    <p>Learn about the unique characteristics, behaviors, and beauty of various cat breeds. Whether you're a cat lover, owner, or simply curious — this gallery is for you!</p>
+  </section>
 
   <div class="gallery">
-    <a href="#siamese"><div class="cat-card"><img src="images/siamese.jpg" alt="Siamese"><h3>Siamese</h3></div></a>
-    <a href="#mainecoon"><div class="cat-card"><img src="images/mainecoon.jpg" alt="Maine Coon"><h3>Maine Coon</h3></div></a>
-    <a href="#persian"><div class="cat-card"><img src="images/persian.jpg" alt="Persian"><h3>Persian</h3></div></a>
-    <a href="#bengal"><div class="cat-card"><img src="images/bengal.jpg" alt="Bengal"><h3>Bengal</h3></div></a>
-    <a href="#abyssinian"><div class="cat-card"><img src="images/abyssinian.jpg" alt="Abyssinian"><h3>Abyssinian</h3></div></a>
-    <a href="#sphynx"><div class="cat-card"><img src="images/sphynx.jpg" alt="Sphynx"><h3>Sphynx</h3></div></a>
-    <a href="#ragdoll"><div class="cat-card"><img src="images/ragdoll.jpg" alt="Ragdoll"><h3>Ragdoll</h3></div></a>
-    <a href="#scottish"><div class="cat-card"><img src="images/scottish.jpg" alt="Scottish Fold"><h3>Scottish Fold</h3></div></a>
-    <a href="#russianblue"><div class="cat-card"><img src="images/russianblue.jpg" alt="Russian Blue"><h3>Russian Blue</h3></div></a>
-    <a href="#british"><div class="cat-card"><img src="images/british.jpg" alt="British Shorthair"><h3>British Shorthair</h3></div></a>
-    <a href="#american"><div class="cat-card"><img src="images/american.jpg" alt="American Curl"><h3>American Curl</h3></div></a>
-    <a href="#norwegian"><div class="cat-card"><img src="images/norwegian.jpg" alt="Norwegian Forest"><h3>Norwegian Forest</h3></div></a>
+    <!-- Replace all image URLs with local images from your /images folder -->
+    <div class="cat-card"><img src="images/siamese.jpg" alt="Siamese"><h3>Siamese</h3></div>
+    <div class="cat-card"><img src="images/mainecoon.jpg" alt="Maine Coon"><h3>Maine Coon</h3></div>
+    <div class="cat-card"><img src="images/persian.jpg" alt="Persian"><h3>Persian</h3></div>
+    <div class="cat-card"><img src="images/bengal.jpg" alt="Bengal"><h3>Bengal</h3></div>
+    <div class="cat-card"><img src="images/abyssinian.jpg" alt="Abyssinian"><h3>Abyssinian</h3></div>
+    <div class="cat-card"><img src="images/sphynx.jpg" alt="Sphynx"><h3>Sphynx</h3></div>
+    <div class="cat-card"><img src="images/ragdoll.jpg" alt="Ragdoll"><h3>Ragdoll</h3></div>
+    <div class="cat-card"><img src="images/scottish.jpg" alt="Scottish Fold"><h3>Scottish Fold</h3></div>
+    <div class="cat-card"><img src="images/russianblue.jpg" alt="Russian Blue"><h3>Russian Blue</h3></div>
+    <div class="cat-card"><img src="images/british.jpg" alt="British Shorthair"><h3>British Shorthair</h3></div>
+    <div class="cat-card"><img src="images/american.jpg" alt="American Curl"><h3>American Curl</h3></div>
+    <div class="cat-card"><img src="images/norwegian.jpg" alt="Norwegian Forest"><h3>Norwegian Forest</h3></div>
   </div>
-
-  <!-- Cat Information Sections -->
-  <div class="cat-detail" id="siamese">
-    <h2>Siamese</h2>
-    <img src="images/siamese.jpg" alt="Siamese">
-    <p><strong>Origin:</strong> Thailand</p>
-    <p><strong>Height:</strong> 23–28 cm</p>
-    <p><strong>Weight:</strong> 2.5–5.5 kg</p>
-    <p><strong>Life Span:</strong> 12–20 years</p>
-    <p><strong>Friendliness:</strong> Highly social and vocal</p>
-    <p><strong>Personality:</strong> Intelligent, affectionate, playful</p>
-    <p><strong>Grooming Needs:</strong> Low maintenance</p>
-    <p><strong>Fun Fact:</strong> Once sacred temple cats in Thailand.</p>
-    <a href="#" class="back">← Back to Top</a>
-  </div>
-
-  <!-- Repeat the same structure for the other 11 cats below -->
-  <!-- Example: <div class="cat-detail" id="mainecoon"> ... </div> -->
 
   <footer>
-    © 2025 Cat Species Gallery | Created with ❤️
+    <p>&copy; 2025 Cat Species Gallery</p>
+    <p>Created by Sahil 🐱 | Contact: sahil@example.com</p>
+    <p>
+      <a href="mailto:sahil@example.com">Email Me</a> | <a href="https://github.com/sahil45358">GitHub</a>
+    </p>
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>
+
 </body>
 </html>
 <div class="cat-detail" id="mainecoon">
