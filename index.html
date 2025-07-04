@@ -189,41 +189,11 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-}
-.modal-content {
-  ...
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-    .modal-content {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 15px;
-  max-width: 90%;
-  width: 90%;
-  box-sizing: border-box;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  position: relative;
-  color: #2e7d32;
-}
-    .modal-content h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-    
-    .modal-overlay {
   opacity: 1;
   animation: fadeIn 0.4s ease-in;
 }
 
+    
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -243,6 +213,9 @@
 .modal-content h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal-content p {
@@ -259,10 +232,6 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #444;
-}
-
-    .nowrap {
-  white-space: nowrap;
 }
     
   </style>
