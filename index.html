@@ -13,26 +13,31 @@
       --footer-bg: #1b5e20;
     }
     body.dark {
+  background-image: none !important;
+  background-color: #121212 !important;
       --bg-color: #121212;
       --text-color: #f1f1f1;
       --card-bg: #1e1e1e;
       --header-bg: #333;
       --footer-bg: #222;
     }
-
+    html {
+      scroll-behavior: smooth;
+    }
     body {
   background-image: url('images/leaves-bg.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: all 0.4s ease-in-out;
-}
+      background-image: url('images/leaves-bg.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.4s ease-in-out;
+    }
     header {
       background-color: var(--header-bg);
       color: white;
@@ -42,7 +47,6 @@
       font-weight: bold;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-
     .toggle-btn {
       position: absolute;
       top: 1rem;
@@ -54,136 +58,92 @@
       font-weight: bold;
       border-radius: 5px;
     }
-
-  .intro {
-  background-color: rgba(255, 255, 255, 0.85);
-  margin: 1rem;
-  padding: 2rem;
-  border-radius: 10px;
-  text-align: center;
-  color: #2e7d32;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
+    .intro {
+      background-color: rgba(255, 255, 255, 0.85);
+      margin: 1rem;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      color: #2e7d32;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
       padding: 2rem;
     }
-
-   .cat-card {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s;
-  cursor: pointer;
-  color: #2e7d32;
-}
-
-    .cat-card:hover {
-  transform: scale(1.05);
-}
-
-   .cat-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  object-position: center;
-  border-bottom: 1px solid #ccc;
-}
-
-   .cat-card h3 {
-  margin: 1rem 0;
-  font-size: 1.2rem;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-    footer {
-  background-color: var(--footer-bg);
-  color: white;
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-}
-.content-overlay {
-  background-color: rgba(255, 255, 255, 0.85); /* white glass-like box */
-  padding: 2rem;
-  margin: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.intro, .cat-card .info {
-  background-color: transparent; /* No need for extra background now */
-}
-
-.cat-card h3, .cat-card .info p {
-  color: #2e7d32;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-   .cat-detail, .cat-details, .cat-card {
-  background-color: rgba(255, 255, 255, 0.92); /* White glass */
-  padding: 1.5rem;
-  margin: 1.5rem auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  color: #2e7d32;
-  max-width: 800px;
-}
-
-.cat-detail img, .cat-details img {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-  margin: 1rem auto;
-}
-
-.cat-detail h2, .cat-details h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-top: 0.5rem;
-}
-
-.cat-detail p, .cat-details p {
-  line-height: 1.6;
-  font-size: 1rem;
-  margin: 0.5rem 0;
-  color: #333;
-}
-
-.back {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #2e7d32;
-  background: #e0f2f1;
-  padding: 6px 10px;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-body.dark .cat-detail, body.dark .cat-details {
-  background-color: rgba(30, 30, 30, 0.9);
-  color: #f1f1f1;
-}
-
-body.dark .back {
-  background: #333;
-  color: #ffc107;
-}
-    html {
-  scroll-behavior: smooth;
-}
-    a {
-      color: #ffc107;
+    .cat-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+      color: #2e7d32;
       text-decoration: none;
     }
-
+    .cat-card:hover {
+      transform: scale(1.05);
+    }
+    .cat-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .cat-card h3 {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .cat-detail {
+      background-color: rgba(255, 255, 255, 0.92);
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      color: #2e7d32;
+      max-width: 800px;
+    }
+    .cat-detail img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+      margin: 1rem auto;
+    }
+    .cat-detail h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+    }
+    .cat-detail p {
+      line-height: 1.6;
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      color: #333;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #2e7d32;
+      background: #e0f2f1;
+      padding: 6px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    footer {
+      background-color: var(--footer-bg);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+    }
     @media (max-width: 600px) {
       header {
         font-size: 1.5rem;
@@ -192,7 +152,40 @@ body.dark .back {
   </style>
 </head>
 <body>
-  <button class="toggle-btn" onclick="toggleMode()">🌙 Toggle Mode</button>
+  <button class="toggle-btn" onclick="document.body.classList.toggle('dark')">🌙 Toggle Mode</button>
+  <header id="top">🐾 Welcome to the Cat Species Gallery 🐾</header>
+  <section class="intro">
+    <h2>🌿 Explore the World of Cats</h2>
+    <p>Learn about the unique characteristics, behaviors, and beauty of various cat breeds.</p>
+  </section>
+  <div class="gallery">
+    <a href="#siamese" class="cat-card"><img src="images/siamese.jpg" alt="Siamese"><h3>Siamese</h3></a>
+    <a href="#mainecoon" class="cat-card"><img src="images/mainecoon.jpg" alt="Maine Coon"><h3>Maine Coon</h3></a>
+    <a href="#persian" class="cat-card"><img src="images/persian.jpg" alt="Persian"><h3>Persian</h3></a>
+    <a href="#bengal" class="cat-card"><img src="images/bengal.jpg" alt="Bengal"><h3>Bengal</h3></a>
+    <a href="#abyssinian" class="cat-card"><img src="images/abyssinian.jpg" alt="Abyssinian"><h3>Abyssinian</h3></a>
+    <a href="#sphynx" class="cat-card"><img src="images/sphynx.jpg" alt="Sphynx"><h3>Sphynx</h3></a>
+    <a href="#ragdoll" class="cat-card"><img src="images/ragdoll.jpg" alt="Ragdoll"><h3>Ragdoll</h3></a>
+    <a href="#scottish" class="cat-card"><img src="images/scottish.jpg" alt="Scottish Fold"><h3>Scottish Fold</h3></a>
+    <a href="#russianblue" class="cat-card"><img src="images/russianblue.jpg" alt="Russian Blue"><h3>Russian Blue</h3></a>
+    <a href="#british" class="cat-card"><img src="images/british.jpg" alt="British Shorthair"><h3>British Shorthair</h3></a>
+    <a href="#american" class="cat-card"><img src="images/american.jpg" alt="American Curl"><h3>American Curl</h3></a>
+    <a href="#norwegian" class="cat-card"><img src="images/norwegian.jpg" alt="Norwegian Forest"><h3>Norwegian Forest</h3></a>
+  </div>
+  <div id="siamese" class="cat-detail">
+    <h2>Siamese</h2>
+    <img src="images/siamese.jpg" alt="Siamese">
+    <p><strong>Origin:</strong> Thailand</p>
+    <p><strong>Life Span:</strong> 12–20 years</p>
+    <p><strong>Traits:</strong> Social, intelligent, vocal</p>
+    <a href="#top" class="back">← Back to Top</a>
+  </div>
+  <footer>
+    <p>&copy; 2025 Cat Species Gallery</p>
+    <p>Created by Sahil 🐱 | Contact: sahil@example.com</p>
+  </footer>
+</body>
+</html>
 
   <header>
     🐾 Welcome to the Cat Species Gallery 🐾
