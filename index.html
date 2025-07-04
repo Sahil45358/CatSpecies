@@ -117,13 +117,64 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.intro, .cat-card .info, footer {
+.intro, .cat-card .info {
   background-color: transparent; /* No need for extra background now */
 }
 
 .cat-card h3, .cat-card .info p {
   color: #2e7d32;
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+   .cat-detail, .cat-details, .cat-card {
+  background-color: rgba(255, 255, 255, 0.92); /* White glass */
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  color: #2e7d32;
+  max-width: 800px;
+}
+
+.cat-detail img, .cat-details img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 1rem auto;
+}
+
+.cat-detail h2, .cat-details h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 0.5rem;
+}
+
+.cat-detail p, .cat-details p {
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #2e7d32;
+  background: #e0f2f1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+body.dark .cat-detail, body.dark .cat-details {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: #f1f1f1;
+}
+
+body.dark .back {
+  background: #333;
+  color: #ffc107;
 }
     
     a {
@@ -337,3 +388,4 @@
   <p><strong>Fun Fact:</strong> A natural climber, once used as a ship cat by Vikings.</p>
   <a href="#" class="back">← Back to Top</a>
 </div>
+
