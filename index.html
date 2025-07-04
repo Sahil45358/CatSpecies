@@ -161,7 +161,13 @@
   justify-content: center;
   z-index: 9999;
 }
-
+.modal-content {
+  ...
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .modal-content {
   background: white;
   padding: 2rem 3rem;
@@ -406,15 +412,14 @@
   </footer>
 </div>
   <script>
-    function toggleMode() {
-      document.body.classList.toggle("dark");
-    }
-    <script>
+  function toggleMode() {
+    document.body.classList.toggle("dark");
+  }
+
   function closeModal() {
     document.getElementById("welcomeModal").style.display = "none";
   }
 
-  // Close modal if click outside of it
   window.addEventListener("click", function (event) {
     const modal = document.getElementById("welcomeModal");
     if (event.target === modal) {
@@ -422,7 +427,6 @@
     }
   });
 </script>
-
   </script>
   
 </body>
