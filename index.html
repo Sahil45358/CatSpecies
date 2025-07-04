@@ -289,7 +289,24 @@
   </footer>
 
   <script>
- function filterCats() {
+ function toggleMode() {
+      document.body.classList.toggle("dark");
+      const btn = document.getElementById("modeToggle");
+      btn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    }
+    
+    function closeModal() {
+    document.getElementById("welcomeModal").style.display = "none";
+  }
+
+  window.addEventListener("click", function (event) {
+    const modal = document.getElementById("welcomeModal");
+    const modalContent = modal.querySelector(".modal-content");
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+    function filterCats() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const grooming = Array.from(document.querySelectorAll(".grooming-filter:checked")).map(el => el.value);
   const friendly = Array.from(document.querySelectorAll(".friendliness-filter:checked")).map(el => el.value);
