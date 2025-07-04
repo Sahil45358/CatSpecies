@@ -145,10 +145,39 @@
       box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
     }
     @media (max-width: 600px) {
-      header {
-        font-size: 1.5rem;
-      }
-    }
+  header {
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+
+  .modal-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .modal-content p {
+    font-size: 1rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .cat-card img {
+    height: 150px;
+  }
+
+  .cat-detail {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .toggle-btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
     .modal-overlay {
   position: fixed;
   top: 0;
@@ -169,6 +198,19 @@
   align-items: center;
 }
 
+    .modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  max-width: 90%;
+  width: 90%;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  position: relative;
+  color: #2e7d32;
+}
     .modal-content h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
