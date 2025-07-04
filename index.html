@@ -247,7 +247,7 @@
   </div>
 </div>
   
-  <button class="toggle-btn" onclick="document.body.classList.toggle('dark')">🌙 Toggle Mode</button>
+  <button class="toggle-btn" id="modeToggle" onclick="toggleMode()">🌙 Dark Mode</button>
   <header id="top">🐾 Welcome to the Cat Species Gallery 🐾</header>
   <section class="intro">
     <h2>🌿 Explore the World of Cats</h2>
@@ -446,7 +446,16 @@
 </div>
   <script>
   function toggleMode() {
-    document.body.classList.toggle("dark");
+    const body = document.body;
+    const toggleBtn = document.getElementById("modeToggle");
+
+    body.classList.toggle("dark");
+
+    if (body.classList.contains("dark")) {
+      toggleBtn.textContent = "☀️ Light Mode";
+    } else {
+      toggleBtn.textContent = "🌙 Dark Mode";
+    }
   }
 
   function closeModal() {
