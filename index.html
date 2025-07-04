@@ -109,7 +109,23 @@
   font-size: 0.9rem;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
 }
+.content-overlay {
+  background-color: rgba(255, 255, 255, 0.85); /* white glass-like box */
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
+.intro, .cat-card .info, footer {
+  background-color: transparent; /* No need for extra background now */
+}
+
+.cat-card h3, .cat-card .info p {
+  color: #2e7d32;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+    
     a {
       color: #ffc107;
       text-decoration: none;
@@ -128,7 +144,8 @@
   <header>
     🐾 Welcome to the Cat Species Gallery 🐾
   </header>
-
+<div class="content-overlay">
+  
   <section class="intro">
     <h2>🌿 Explore the World of Cats</h2>
     <p>Learn about the unique characteristics, behaviors, and beauty of various cat breeds. Whether you're a cat lover, owner, or simply curious — this gallery is for you!</p>
@@ -157,7 +174,7 @@
       <a href="mailto:sahil@example.com">Email Me</a> | <a href="https://github.com/sahil45358">GitHub</a>
     </p>
   </footer>
-
+</div>
   <script>
     function toggleMode() {
       document.body.classList.toggle("dark");
